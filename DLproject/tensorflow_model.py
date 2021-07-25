@@ -7,12 +7,12 @@ from collections import deque
 ### ----- This code does not work properly ----- ###
 ###                                              ###
 
-# After a lot of work and debugging, we found out that the gradient are not computed and we haven't been able to figure out why
+# After a lot of work and debugging, we found out that the gradients are not computed and we haven't been able to figure out why
 
-class DuellingDQN(tf.keras.Model):
+class DuelingDQN(tf.keras.Model):
 
     def __init__(self):
-        super(DuellingDQN, self).__init__()
+        super(DuelingDQN, self).__init__()
         self.dense1 = tf.keras.layers.Dense(231, activation=tf.nn.relu, input_shape = (231, ))
         self.dense2 = tf.keras.layers.Dense(128, activation=tf.nn.relu)
         
@@ -89,8 +89,8 @@ class agent():
         self.buffer_len = 10000
         self.replay = experience_replay(self.buffer_len)
 
-        self.model = DuellingDQN()
-        self.model_target = DuellingDQN()   
+        self.model = DuelingDQN()
+        self.model_target = DuelingDQN()   
 
         # The casting of the optimizer's parameters into tf.Variables is necessary to solve a problem when loading the checkpoint
         self.adam = tf.keras.optimizers.Adam(
